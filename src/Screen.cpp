@@ -49,16 +49,34 @@ bool Screen::Init() {
 	//Set each pixel to white with 0xFF
 	memset(buffer, 0xFF, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
 	//Overwrite screen with dark green value
+
 	for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
 		buffer[i] = 0x008000FF;
 	}
 
+
+	return true;
+}
+
+void Screen::Update() {
 	SDL_UpdateTexture(maintexture, NULL, buffer, SCREEN_WIDTH * sizeof(Uint32));
 	SDL_RenderClear(mainrenderer);
 	SDL_RenderCopy(mainrenderer, maintexture, NULL, NULL);
 	SDL_RenderPresent(mainrenderer);
+}
 
-	return true;
+void Screen::Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha){
+	Uint32 colour = 0;
+
+	    colour += red;
+	    colour <<= 8;
+	    colour += green;
+	    colour <<= 8;
+	    colour += blue;
+	    colour <<=8;
+	    colour += alpha;
+
+	    buffer[(y*SCREEN_WIDTH)+x] = colour;
 }
 
 bool Screen::Main_Loop() {
@@ -74,7 +92,7 @@ bool Screen::Main_Loop() {
 }
 
 void Screen::Cleanup() {
-	delete []buffer;
+	delete[] buffer;
 	SDL_DestroyRenderer(mainrenderer);
 	SDL_DestroyTexture(maintexture);
 	SDL_DestroyWindow(mainwindow);

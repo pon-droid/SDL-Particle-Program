@@ -8,7 +8,8 @@
 #ifndef SCREEN_H_
 #define SCREEN_H_
 #include<SDL2/SDL.h>
-
+#include<iomanip>
+#include<math.h>
 
 namespace tbg {
 
@@ -24,7 +25,9 @@ private:
 public:
 	Screen();
 	bool Init();
+	void Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
 	bool Main_Loop();
+	void Update();
 	void Cleanup();
 
 };
