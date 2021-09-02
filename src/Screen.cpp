@@ -17,7 +17,7 @@ Screen::Screen() {
 bool Screen::Init() {
 	// data member creation
 	mainwindow = SDL_CreateWindow("the PON gram", SDL_WINDOWPOS_UNDEFINED,
-	SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
 	mainrenderer = SDL_CreateRenderer(mainwindow, -1,
 			SDL_RENDERER_PRESENTVSYNC);
 	maintexture = SDL_CreateTexture(mainrenderer, SDL_PIXELFORMAT_RGBA8888,
@@ -51,9 +51,8 @@ bool Screen::Init() {
 	//Overwrite screen with dark green value
 
 	for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-		buffer[i] = 0x008000FF;
+		buffer[i] = 0x00000000;
 	}
-
 
 	return true;
 }
@@ -65,18 +64,24 @@ void Screen::Update() {
 	SDL_RenderPresent(mainrenderer);
 }
 
-void Screen::Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha){
+void Screen::Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue,
+		Uint8 alpha) {
+
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT) {
+		return;
+	}
+
 	Uint32 colour = 0;
 
-	    colour += red;
-	    colour <<= 8;
-	    colour += green;
-	    colour <<= 8;
-	    colour += blue;
-	    colour <<=8;
-	    colour += alpha;
+	colour += red;
+	colour <<= 8;
+	colour += green;
+	colour <<= 8;
+	colour += blue;
+	colour <<= 8;
+	colour += alpha;
 
-	    buffer[(y*SCREEN_WIDTH)+x] = colour;
+	buffer[(y * SCREEN_WIDTH) + x] = colour;
 }
 
 bool Screen::Main_Loop() {

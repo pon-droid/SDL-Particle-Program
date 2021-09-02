@@ -25,7 +25,8 @@ private:
 public:
 	Screen();
 	bool Init();
-	void Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue, Uint8 alpha);
+	void Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue,
+			Uint8 alpha);
 	bool Main_Loop();
 	void Update();
 	void Cleanup();
