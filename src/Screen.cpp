@@ -57,6 +57,10 @@ bool Screen::Init() {
 	return true;
 }
 
+void Screen::Buffer_Clear(){
+	memset(buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+}
+
 void Screen::Update() {
 	SDL_UpdateTexture(maintexture, NULL, buffer, SCREEN_WIDTH * sizeof(Uint32));
 	SDL_RenderClear(mainrenderer);
@@ -68,8 +72,8 @@ void Screen::Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue,
 		Uint8 alpha) {
 
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT) {
-		return;
-	}
+			return;
+		}
 
 	Uint32 colour = 0;
 

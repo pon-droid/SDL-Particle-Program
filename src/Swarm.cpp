@@ -18,4 +18,10 @@ Swarm::~Swarm() {
 	delete[] m_Particle;
 }
 
+void Swarm::Update(){
+	for(int i=0;i<Swarm::NPARTICLES;i++){
+		m_Particle[i].Update();
+	}
+}
+
 } /* namespace tbg */

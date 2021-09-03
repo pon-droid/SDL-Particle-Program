@@ -15,8 +15,11 @@ namespace tbg {
 struct Particle {
 	double par_x;
 	double par_y;
+
+	double speed;
 public:
 	Particle();
+	void Update();
 };
 
 } /* namespace tbg */

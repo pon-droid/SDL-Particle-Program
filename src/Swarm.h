@@ -14,7 +14,7 @@ namespace tbg {
 
 class Swarm {
 public:
-	const static int NPARTICLES = 5000;
+	const static int NPARTICLES = 1000;
 private:
 	Particle *m_Particle;
 public:
@@ -25,6 +25,8 @@ public:
 		return m_Particle;
 	}
 	;
+
+	void Update();
 };
 
 } /* namespace tbg */
