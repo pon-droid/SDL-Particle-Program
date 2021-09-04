@@ -9,6 +9,8 @@
 #define PARTICLE_H_
 
 #include<stdlib.h>
+#include<math.h>
+
 
 namespace tbg {
 
@@ -16,6 +18,7 @@ struct Particle {
 	double par_x;
 	double par_y;
 
+	double direction;
 	double speed;
 public:
 	Particle();

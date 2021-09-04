@@ -9,25 +9,20 @@
 
 namespace tbg {
 
-Particle::Particle() {
-
-	par_x = ((2.0 * rand()) / RAND_MAX) - 1;
-	par_y = ((2.0 * rand()) / RAND_MAX) - 1;
-
-	speed = 0.0025 * (((2.0 * rand()) / RAND_MAX) - 1);
+Particle::Particle() :
+		par_x(0), par_y(0) {
+	direction = (2 * M_PI * rand())/RAND_MAX;
+	speed = (0.0025 * rand())/RAND_MAX;
 
 }
 
 void Particle::Update() {
-	par_x += speed;
-	par_y += speed;
+	double xspeed = speed * cos(direction);
+	double yspeed = speed * sin(direction);
 
-	if (par_x <= -1.0 || par_x >= 1.0) {
-		speed = -speed;
-	}
-	if (par_y <= -1.0 || par_y >= 1.0) {
-		speed = -speed;
-	}
+	par_x += xspeed;
+	par_y += yspeed;
+
 }
 
 } /* namespace tbg */

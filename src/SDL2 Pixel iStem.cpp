@@ -4,6 +4,7 @@
 #include"Particle.h"
 #include<time.h>
 #include"Swarm.h"
+#include<iostream>
 
 using namespace std;
 using namespace tbg;
@@ -15,6 +16,9 @@ int main(int argc, char *argv[]) {
 	Screen screen;
 
 	Swarm swarm;
+
+	const int widthx2 = Screen::SCREEN_WIDTH / 2;
+	const int heightx2 = Screen::SCREEN_HEIGHT / 2;
 	while (true) {
 		int ticks = SDL_GetTicks();
 		//Sine locks value to -1 +1 and gradually bounces up and down
@@ -29,8 +33,8 @@ int main(int argc, char *argv[]) {
 		for (int i = 0; i < Swarm::NPARTICLES; i++) {
 			Particle particle = particles[i];
 
-			int x = (particle.par_x + 1) * Screen::SCREEN_WIDTH / 2;
-			int y = (particle.par_y + 1) * Screen::SCREEN_HEIGHT / 2;
+			int x = (particle.par_x + 1) * widthx2;
+			int y = particle.par_y * widthx2 + heightx2;
 
 			screen.Set_Pixel(x, y, red, blue, green, 255);
 		}
