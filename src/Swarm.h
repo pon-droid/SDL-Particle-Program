@@ -17,6 +17,8 @@ public:
 	const static int NPARTICLES = 5000;
 private:
 	Particle *m_Particle;
+	int ticks;
+	int lastTime;
 public:
 	Swarm();
 	virtual ~Swarm();
@@ -26,7 +28,7 @@ public:
 	}
 	;
 
-	void Update();
+	void Update(int ticks);
 };
 
 } /* namespace tbg */

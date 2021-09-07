@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 			screen.Set_Pixel(x, y, red, blue, green, 255);
 		}
 
-		swarm.Update();
+		swarm.Update(ticks);
 		/*
 		 for (int y = 0; y < Screen::SCREEN_HEIGHT; y++) {
 		 for (int x = 0; x < Screen::SCREEN_WIDTH; x++) {

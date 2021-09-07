@@ -22,7 +22,7 @@ struct Particle {
 	double speed;
 public:
 	Particle();
-	void Update();
+	void Update(int interval);
 };
 
 } /* namespace tbg */
