@@ -21,14 +21,15 @@ private:
 	SDL_Window *mainwindow;
 	SDL_Renderer *mainrenderer;
 	SDL_Texture *maintexture;
-	Uint32 *buffer;
+	Uint32 *buffer1;
+	Uint32 *buffer2;
 public:
 	Screen();
 	bool Init();
 	void Set_Pixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue,
 			Uint8 alpha);
-	void Buffer_Clear();
 	bool Main_Loop();
+	void BoxBlur();
 	void Update();
 	void Cleanup();
 

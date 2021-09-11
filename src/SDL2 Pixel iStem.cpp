@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
 		unsigned char blue = (1 + (sin(ticks * 0.0003))) * 128;
 
 		const Particle *const particles = swarm.Get_Particles();
-		screen.Buffer_Clear();
+
 		for (int i = 0; i < Swarm::NPARTICLES; i++) {
 			Particle particle = particles[i];
 
@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
 		 }
 		 }
 		 */
+
+		screen.BoxBlur();
 		screen.Update();
 
 		if (screen.Main_Loop() == false) {
