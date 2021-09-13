@@ -15,8 +15,8 @@ namespace tbg {
 
 class Screen {
 public:
-	const static int SCREEN_WIDTH = 800;
-	const static int SCREEN_HEIGHT = 600;
+	const static int SCREEN_WIDTH = 1400;
+	const static int SCREEN_HEIGHT = 1050;
 private:
 	SDL_Window *mainwindow;
 	SDL_Renderer *mainrenderer;

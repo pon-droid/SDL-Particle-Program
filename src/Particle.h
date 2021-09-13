@@ -10,6 +10,8 @@
 
 #include<stdlib.h>
 #include<math.h>
+#include<SDL2/SDL.h>
+#include<iostream>
 
 
 namespace tbg {
@@ -22,6 +24,7 @@ struct Particle {
 	double speed;
 public:
 	Particle();
+	void Init();
 	void Update(int interval);
 };
 

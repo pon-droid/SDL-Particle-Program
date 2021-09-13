@@ -17,13 +17,15 @@ Screen::Screen() {
 bool Screen::Init() {
 	// data member creation
 	mainwindow = SDL_CreateWindow("the PON gram", SDL_WINDOWPOS_UNDEFINED,
-	SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_RESIZABLE);
+	SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	mainrenderer = SDL_CreateRenderer(mainwindow, -1,
 			SDL_RENDERER_PRESENTVSYNC);
 	maintexture = SDL_CreateTexture(mainrenderer, SDL_PIXELFORMAT_RGBA8888,
 			SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
 	buffer1 = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+	/*
 	buffer2 = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+	*/
 
 	// NULL checking
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -49,7 +51,9 @@ bool Screen::Init() {
 
 	//Set each pixel in buffer to black
 	memset(buffer1, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+	/*
 	memset(buffer2, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+	*/
 
 	return true;
 }
@@ -63,9 +67,7 @@ void Screen::Update() {
 }
 
 void Screen::BoxBlur() {
-	Uint32 *tempbuff = buffer1;
-	buffer1 = buffer2;
-	buffer2 = tempbuff;
+
 
 	for (int y = 0; y < SCREEN_HEIGHT; y++) {
 		for (int x = 0; x < SCREEN_WIDTH; x++) {
@@ -81,7 +83,7 @@ void Screen::BoxBlur() {
 
 					if (currentX >= 0 && currentX < SCREEN_WIDTH
 							&& currentY >= 0 && currentY < SCREEN_HEIGHT) {
-						Uint32 colour = buffer2[currentY * SCREEN_WIDTH
+						Uint32 colour = buffer1[currentY * SCREEN_WIDTH
 								+ currentX];
 
 						Uint8 red = colour >> 24;
@@ -138,7 +140,9 @@ bool Screen::Main_Loop() {
 
 void Screen::Cleanup() {
 	delete[] buffer1;
+	/*
 	delete[] buffer2;
+	*/
 	SDL_DestroyRenderer(mainrenderer);
 	SDL_DestroyTexture(maintexture);
 	SDL_DestroyWindow(mainwindow);
