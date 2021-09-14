@@ -28,8 +28,9 @@ void Particle::Init(){
 }
 
 void Particle::Update(int interval) {
-
-
+/*
+	int mouseX,mouseY;
+*/
 
 	double xspeed = speed * cos(direction);
 	double yspeed = speed * sin(direction);
@@ -38,12 +39,18 @@ void Particle::Update(int interval) {
 	par_y += yspeed * interval;
 
 	 const Uint8* currentKeyStates = SDL_GetKeyboardState( NULL );
+	 /*
+	 const Uint32* mousePos = SDL_GetMouseState(&mouseX,&mouseY);
+	 */
 
 	 if( currentKeyStates[SDL_SCANCODE_UP]){
 		 direction += interval*0.0025;
 	 }
 	 if( currentKeyStates[SDL_SCANCODE_DOWN]){
 		 direction -= interval*0.0025;
+	 }
+	 if( currentKeyStates[SDL_SCANCODE_X]){
+		 Init();
 	 }
 
 /*
